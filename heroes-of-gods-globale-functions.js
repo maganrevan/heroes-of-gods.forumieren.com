@@ -7,7 +7,7 @@ $(document).ready(function(){
     //set the subnavi at the right position
     if($('.hierarchy').parent().children('.gensmall').length !== 0){
         $('.hierarchy').parent().each(function(){
-            if(!$(this).hasClass('.topic-title-container')){
+            if($(this).children('.topic-title').length ===0) {
                 $(this).children('br').detach();
                 $(this).children('h2.hierarchy').after('<br />');
             }
