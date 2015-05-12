@@ -3,6 +3,14 @@ var oArcher = {HP:230, DEF: 10, MP: 45, ATK:25, EXP: 0};
 var oMage = {HP: 175, DEF: 5, MP: 65, ATK:10, EXP: 0};
 
 $(document).ready(function(){
+    
+    //set the subnavi at the right position
+    $('.hierarchy').parent().each(function(){
+        $(this).children('br').detach();
+        $(this).children('h2.hierarchy').after('<br />');
+    });
+
+    
 //set arrayelements of display:none
 
 var aLinks = ["/calendar","/faq","/search"];
