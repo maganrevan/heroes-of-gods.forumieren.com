@@ -5,10 +5,14 @@ var oMage = {HP: 175, DEF: 5, MP: 65, ATK:10, EXP: 0};
 $(document).ready(function(){
     
     //set the subnavi at the right position
-    $('.hierarchy').parent().each(function(){
-        $(this).children('br').detach();
-        $(this).children('h2.hierarchy').after('<br />');
-    });
+    if($('.hierarchy').parent().children('.gensmall').length !== 0){
+        $('.hierarchy').parent().each(function(){
+            if(!$(this).hasClass('.topic-title-container')){
+                $(this).children('br').detach();
+                $(this).children('h2.hierarchy').after('<br />');
+            }
+        });
+    };
 
     
 //set arrayelements of display:none
