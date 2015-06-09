@@ -44,7 +44,15 @@ $(document).ready(function () {
     if ($('#textarea_content').length) {
         $('<div><span id="counter"></span>&nbsp;<span id="words"></span></div>').appendTo('#postingbox .fields1');
         setInterval(function () {
-            var iCounter = $('#textarea_content').children('.sceditor-container').children('textarea').val().split(/[\s,]+/).length - 1;
+        	var sCurrent = $('#textarea_content').children('.sceditor-container').children('textarea').val();
+        	
+            if(!sCurrent.trim()){
+				var iCounter = 0;
+			}
+			else{
+				var iCounter = sCurrent.split(/[\s,]+/).length;
+			}
+			
             $('#counter').html(iCounter);
             if (iCounter === 1) {
                 $('#words').html('Wort');
@@ -53,8 +61,7 @@ $(document).ready(function () {
                 $('#words').html('W&ouml;rter');
             }
         }, 500);
-    }
-    ;
+    };
 
 //leveldesign
     var aWarriorLast = new Array(oWarrior.HP, oWarrior.MP, oWarrior.ATK, oWarrior.DEF, oWarrior.EXP);
