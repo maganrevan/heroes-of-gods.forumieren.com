@@ -74,8 +74,8 @@ $(document).ready(function () {
         aWarriorLast[2] += 25;
         aWarriorLast[3] += 29;
         aWarriorLast[4] += i + 150;
-        aWarriorLast[5] += i + 25;
-        aWarriorLast[6] += i + 10;
+        aWarriorLast[5] += 25;
+        aWarriorLast[6] += 10;
 
         $('#archer').children('tbody').append('<tr><td>' + i + '</td><td>' + aArcherLast[0] + '</td><td>' + aArcherLast[1] + '</td><td>' + aArcherLast[2] + '</td><td>' + aArcherLast[3] + '</td><td>' + aArcherLast[4] + '</td><td>'+ aArcherLast[5] +'</td><td>'+ aArcherLast[6] +'</td></tr>');
         aArcherLast[0] += 20;
@@ -83,8 +83,8 @@ $(document).ready(function () {
         aArcherLast[2] += 14;
         aArcherLast[3] += 11;
         aArcherLast[4] += i + 150;
-        aArcherLast[4] += i + 25;
-        aArcherLast[4] += i + 15;
+        aArcherLast[5] += 25;
+        aArcherLast[6] += 15;
 
         $('#mage').children('tbody').append('<tr><td>' + i + '</td><td>' + aMageLast[0] + '</td><td>' + aMageLast[1] + '</td><td>' + aMageLast[2] + '</td><td>' + aMageLast[3] + '</td><td>' + aMageLast[4] + '</td><td>' + aMageLast[5] + '</td><td>' + aMageLast[6] + '</td></tr>');
         aMageLast[0] += 16;
@@ -92,8 +92,8 @@ $(document).ready(function () {
         aMageLast[2] += 6;
         aMageLast[3] += 13;
         aMageLast[4] += i + 150;
-        aMageLast[4] += i + 10;
-        aMageLast[4] += i + 25;
+        aMageLast[5] += 10;
+        aMageLast[6] += 25;
     }
 
 });
