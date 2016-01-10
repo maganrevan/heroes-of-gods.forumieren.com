@@ -22,7 +22,7 @@ $(document).ready(function () {
     }
 
     //delete the subnavi if you roll a six size
-    $('.content').find(':contains("folgende Handlung ausgef�hrt:")').each(function () {
+    $('.content').find(':contains("folgende Handlung ausgeführt:")').each(function () {
         $(this).parent().parent().children('.profile-icons').css('display', 'none');
     });
 
@@ -30,13 +30,12 @@ $(document).ready(function () {
     var sUrl = $(location).attr('href');
     var aUrl = sUrl.split("/").reverse();
     var aCurrent = aUrl[0].split("?");
-    if (aCurrent !== "") {
+    if (aCurrent[0] !== "") {
         $('.navlinks').children().children('a[href*="/' + aCurrent[0] + '"]').addClass('active');
     } else {
         $('.navlinks').children().children('a[href="/"]').addClass('active');
     };
 
-    //trigger the current Input
     var oWarrior = {HP: 350, DEF: 15, MP: 20, ATK: 35, EXP: 0, HPR: 40, MPR: 20};
     var oArcher = {HP: 230, DEF: 10, MP: 45, ATK: 25, EXP: 0, HPR: 50, MPR: 30};
     var oMage = {HP: 175, DEF: 5, MP: 65, ATK: 10, EXP: 0, HPR: 30, MPR: 50};
@@ -68,7 +67,7 @@ $(document).ready(function () {
     var sUrl = $(location).attr('href');
     var aUrl = sUrl.split("/").reverse();
     var aCurrent = aUrl[0].split("?");
-    if (aCurrent !== "") {
+    if (aCurrent[0] !== "") {
         $('.navlinks').children().children('a[href*="/' + aCurrent[0] + '"]').addClass('active');
     } else {
         $('.navlinks').children().children('a[href="/"]').addClass('active');
