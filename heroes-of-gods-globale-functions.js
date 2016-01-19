@@ -72,74 +72,7 @@ $(document).ready(function () {
     } else {
         $('.navlinks').children().children('a[href="/"]').addClass('active');
     }
-
-
-
-    fctDeletePost = function (name) {
-        localStorage.setItem(name, '');
-    };
-
-    //trigger the current Input
-    if ($('#textarea_content').length) {
-        setTimeout(function () {
-            //save and load post
-            /*Beginn Postsicherung*/
-            if ($('.sceditor-container').find('textarea').length !== 0) {
-                if (localStorage.getItem("post") !== '' && localStorage.getItem("post") !== null) {
-                    var bConfirm = confirm("Möchten Sie den letzten Post wieder laden?");
-                }
-
-                $('.submit-buttons').find('.button2, .button1').bind('click', function () {
-                    fctDeletePost("post");
-                });
-
-                if (bConfirm === true) {
-                    $('.sceditor-container').children('textarea').val(localStorage.getItem('post').replace(/<br[^>]*>/g, "\n"));
-                    fctDeletePost("post");
-                } else {
-                    fctDeletePost("post");
-                }
-
-                $('.sceditor-container').children('textarea').bind('keyup', function () {
-                    localStorage.setItem("post", $(this).val().replace(/\n/g, '<br/>'));
-                });
-            }
-            /*Ende Postsicherung*/
-
-            if ($('#counter').length === 0) {
-                $('<div><span id="counter">0</span>&nbsp;<span id="words">W&ouml;rter</span></div>').appendTo('.sceditor-container');
-            }
-
-            $('.sceditor-container').children('textarea').bind('keyup', function () {
-                $(this).fctCountWords();
-            });
-
-            $('.sceditor-container').children('textarea').fctCountWords();
-        }, 1500);
-    }
-
-    $.fn.fctCountWords = function () {
-        var sCurrent = $(this).val();
-        var aCurrent = sCurrent.split(/[\s,]+/);
-
-        if (!sCurrent.trim()) {
-            var iCounter = 0;
-        } else {
-            var iCounter = sCurrent.split(/[\s,]+/).length;
-        }
-        if (aCurrent[aCurrent.length - 1] === '' && iCounter > 0) {
-            iCounter = iCounter - 1;
-        }
-
-        $('#counter').html(iCounter);
-
-        if (iCounter === 1) {
-            $('#words').html('Wort');
-        } else {
-            $('#words').html('W&ouml;rter');
-        }
-    };
-
+    
     //leveldesign
     var aWarriorLast = new Array(oWarrior.HP, oWarrior.MP, oWarrior.ATK, oWarrior.DEF, oWarrior.EXP, oWarrior.HPR, oWarrior.MPR);
     var aArcherLast = new Array(oArcher.HP, oArcher.MP, oArcher.ATK, oArcher.DEF, oArcher.EXP, oArcher.HPR, oArcher.MPR);
