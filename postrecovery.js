@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    setTimeOut(function () {
+    setTimeout(function () {
         /*Beginn Postsicherung*/
         if ($('.sceditor-container').find('textarea').length !== 0) {
             if (localStorage.getItem("post") !== '' && localStorage.getItem("post") !== null) {
