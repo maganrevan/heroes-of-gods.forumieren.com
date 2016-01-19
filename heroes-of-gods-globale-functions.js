@@ -73,29 +73,7 @@ $(document).ready(function () {
         $('.navlinks').children().children('a[href="/"]').addClass('active');
     }
 
-    //save and load post
-    /*Beginn Postsicherung*/
-    if ($('.sceditor-container').find('textarea').length !== 0) {
-        if (localStorage.getItem("post") !== '' && localStorage.getItem("post") !== null) {
-            var bConfirm = confirm("Möchten Sie den letzten Post wieder laden?");
-        }
 
-        $('.submit-buttons').find('.button2, .button1').bind('click', function () {
-            fctDeletePost("post");
-        });
-
-        if (bConfirm === true) {
-            $('.sceditor-container').children('textarea').val(localStorage.getItem('post').replace(/<br[^>]*>/g, "\n"));
-            fctDeletePost("post");
-        } else {
-            fctDeletePost("post");
-        }
-
-        $('.sceditor-container').children('textarea').bind('keyup', function () {
-            localStorage.setItem("post", $(this).val().replace(/\n/g, '<br/>'));
-        });
-    }
-    /*Ende Postsicherung*/
 
     fctDeletePost = function (name) {
         localStorage.setItem(name, '');
@@ -104,6 +82,30 @@ $(document).ready(function () {
     //trigger the current Input
     if ($('#textarea_content').length) {
         setTimeout(function () {
+            //save and load post
+            /*Beginn Postsicherung*/
+            if ($('.sceditor-container').find('textarea').length !== 0) {
+                if (localStorage.getItem("post") !== '' && localStorage.getItem("post") !== null) {
+                    var bConfirm = confirm("Möchten Sie den letzten Post wieder laden?");
+                }
+
+                $('.submit-buttons').find('.button2, .button1').bind('click', function () {
+                    fctDeletePost("post");
+                });
+
+                if (bConfirm === true) {
+                    $('.sceditor-container').children('textarea').val(localStorage.getItem('post').replace(/<br[^>]*>/g, "\n"));
+                    fctDeletePost("post");
+                } else {
+                    fctDeletePost("post");
+                }
+
+                $('.sceditor-container').children('textarea').bind('keyup', function () {
+                    localStorage.setItem("post", $(this).val().replace(/\n/g, '<br/>'));
+                });
+            }
+            /*Ende Postsicherung*/
+
             if ($('#counter').length === 0) {
                 $('<div><span id="counter">0</span>&nbsp;<span id="words">W&ouml;rter</span></div>').appendTo('.sceditor-container');
             }
