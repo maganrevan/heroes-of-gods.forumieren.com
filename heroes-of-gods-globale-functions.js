@@ -12,7 +12,7 @@ $(document).ready(function () {
                 $(this).children('h2.hierarchy').after('<br />');
             }
         });
-    };
+    }
 
 
     //set arrayelements of display:none
@@ -34,7 +34,7 @@ $(document).ready(function () {
         $('.navlinks').children().children('a[href*="/' + aCurrent[0] + '"]').addClass('active');
     } else {
         $('.navlinks').children().children('a[href="/"]').addClass('active');
-    };
+    }
 
     var oWarrior = {HP: 350, DEF: 15, MP: 20, ATK: 35, EXP: 0, HPR: 40, MPR: 20};
     var oArcher = {HP: 230, DEF: 10, MP: 45, ATK: 25, EXP: 0, HPR: 50, MPR: 30};
@@ -48,22 +48,22 @@ $(document).ready(function () {
                 $(this).children('h2.hierarchy').after('<br />');
             }
         });
-    };
+    }
 
 
-//set arrayelements of display:none
+    //set arrayelements of display:none
 
     var aLinks = ["/calendar", "/faq", "/search"];
     for (i = 0; i < aLinks.length; i++) {
         $('.navlinks').children().children('a[href="' + aLinks[i] + '"]').parent().css("display", "none");
     }
 
-//delete the subnavi if you roll a six size
+    //delete the subnavi if you roll a six size
     $('.content').find(':contains("folgende Handlung ausgeführt:")').each(function () {
         $(this).parent().parent().children('.profile-icons').css('display', 'none');
     });
 
-//set active navi
+    //set active navi
     var sUrl = $(location).attr('href');
     var aUrl = sUrl.split("/").reverse();
     var aCurrent = aUrl[0].split("?");
@@ -71,6 +71,34 @@ $(document).ready(function () {
         $('.navlinks').children().children('a[href*="/' + aCurrent[0] + '"]').addClass('active');
     } else {
         $('.navlinks').children().children('a[href="/"]').addClass('active');
+    }
+
+    //save and load post
+    /*Beginn Postsicherung*/
+    if ($('.sceditor-container').find('textarea').length !== 0) {
+        if (localStorage.getItem("post") !== '' && localStorage.getItem("post") !== null) {
+            var bConfirm = confirm("Möchten Sie den letzten Post wieder laden?");
+        }
+
+        $('.submit-buttons').find('.button2, .button1').bind('click', function () {
+            fctDeletePost("post");
+        });
+
+        if (bConfirm === true) {
+            $('.sceditor-container').children('textarea').val(localStorage.getItem('post').replace(/<br[^>]*>/g, "\n"));
+            fctDeletePost("post");
+        } else {
+            fctDeletePost("post");
+        }
+
+        $('.sceditor-container').children('textarea').bind('keyup', function () {
+            localStorage.setItem("post", $(this).val().replace(/\n/g, '<br/>'));
+        });
+    }
+    /*Ende Postsicherung*/
+
+    fctDeletePost = function (name) {
+        localStorage.setItem(name, '');
     };
 
     //trigger the current Input
@@ -81,27 +109,33 @@ $(document).ready(function () {
             }
 
             $('.sceditor-container').children('textarea').bind('keyup', function () {
-                var sCurrent = $(this).val();
-                var aCurrent = sCurrent.split(/[\s,]+/);
-
-                if (!sCurrent.trim()) {
-                    var iCounter = 0;
-                } else {
-                    var iCounter = sCurrent.split(/[\s,]+/).length;
-                }
-                if (aCurrent[aCurrent.length - 1] === '' && iCounter > 0) {
-                    iCounter = iCounter - 1;
-                }
-
-                $('#counter').html(iCounter);
-
-                if (iCounter === 1) {
-                    $('#words').html('Wort');
-                } else {
-                    $('#words').html('W&ouml;rter');
-                }
+                $(this).fctCountWords();
             });
+
+            $('.sceditor-container').children('textarea').fctCountWords();
         }, 1500);
+    }
+
+    $.fn.fctCountWords = function () {
+        var sCurrent = $(this).val();
+        var aCurrent = sCurrent.split(/[\s,]+/);
+
+        if (!sCurrent.trim()) {
+            var iCounter = 0;
+        } else {
+            var iCounter = sCurrent.split(/[\s,]+/).length;
+        }
+        if (aCurrent[aCurrent.length - 1] === '' && iCounter > 0) {
+            iCounter = iCounter - 1;
+        }
+
+        $('#counter').html(iCounter);
+
+        if (iCounter === 1) {
+            $('#words').html('Wort');
+        } else {
+            $('#words').html('W&ouml;rter');
+        }
     };
 
     //leveldesign
